@@ -1,0 +1,34 @@
+<div class="row">
+  <div *ngFor="let product of products" class="col-xl-3 col-lg-4 col-sm-6">
+    <div class="product">
+      <div class="product-image">
+        <img [src]='product.thumbUrl' alt="product" class="img-fluid">
+        <div class="product-hover-overlay">
+          <a [routerLink]="[product.id]" class="product-hover-overlay-link"></a>
+          <div class="product-hover-overlay-buttons">
+            <a [routerLink]="[product.id]" class="btn btn-dark btn-view">
+              <i class="fa-search fa"></i>
+              <span class="btn-view-label ml-2">View</span>
+            </a>
+            <button (click)="quickView.getProductPreview(product.id)" data-toggle="modal" data-target="#productModal"
+              class="btn btn-outline-dark btn-product-right">
+              <i class="fa fa-expand-arrows-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="py-2">
+        <p class="text-muted text-sm mb-1">{{product.brand}}</p>
+        <h3 class="h6 text-uppercase mb-1">
+          <a [routerLink]="[product.id]" class="text-dark">{{product.title}}</a>
+        </h3>
+        <span class="text-muted">{{product.price | currency:'UAH':'symbol-narrow':'0.0-0'}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Pager start-->
+<app-pager></app-pager>
+<!-- Pager end-->
+<!--Quick view modal-->
+<app-quick-view #quickView></app-quick-view>

@@ -1,0 +1,21 @@
+<div *ngFor="let filterItem of filterList" class="sidebar-block px-3 px-lg-0">
+  <a data-toggle="collapse" href="#filterMenu" aria-expanded="false"
+    aria-controls="filterMenu" class="d-lg-none block-toggler">Filter by {{filterItem.groupName}}</a>
+  <!-- Filter menu-->
+  <div id="filterMenu" class="expand-lg collapse">
+    <h6 class="sidebar-heading d-none d-lg-block">{{filterItem.groupName}}</h6>
+    <form action="#" class="mt-4 mt-lg-0">
+      <div *ngFor="let filter of filterItem.filters" class="form-group mb-1">
+        <div class="custom-control custom-checkbox">
+          <input id="{{filter.name}}" type="checkbox" 
+           (change)="filterResults(filterItem.groupName, filter.id, $event.target.checked)" 
+          name="{{filterItem.groupName}}_{{filter.name}}" class="custom-control-input"
+          [checked]="filter.isSelected">
+          <label for="{{filter.name}}" class="custom-control-label">{{filter.name}} 
+            <small>({{filter.quantity}})</small>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

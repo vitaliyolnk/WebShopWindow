@@ -1,0 +1,33 @@
+.modal-lg {
+    max-width: 1000px;
+}
+.svg-icon{
+    width:18px;
+    height:18px;
+    stroke:currentColor;
+    stroke-width:3;
+    vertical-align:text-bottom;
+    --layer1: currentColor;
+    --layer2: currentColor
+}
+.svg-icon.svg-icon-light{
+    stroke-width:2
+}
+.svg-icon.svg-icon-heavy{
+    stroke-width:4
+}
+.close.modal-close{
+    text-align:center;
+    position:absolute;
+    top:-8px;
+    right:-5px;
+    opacity:1;
+    font-size:1rem;
+    z-index:999;
+    cursor:pointer;
+    text-shadow: none;
+}
+.close.modal-close:hover{
+    opacity:1 !important;
+    color: #303030;
+}
