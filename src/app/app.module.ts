@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,7 +15,7 @@ import { ProductService } from './products/shared/product.service';
 import { PagerComponent } from './products/pager/pager.component';
 
 const appRoutes: Routes = [
-  { path: 'products', component: ProductsComponent, },
+  { path: 'products', component: ProductsComponent },
   {
     path: 'products/:id', component: ProductDetailsComponent,
     resolve: { productDetails: ProductDetailsResolver }
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     ),
     BrowserModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [

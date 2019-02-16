@@ -2,6 +2,10 @@ import { IProductPreview } from './product-preview';
 
 export const PRODUCT_PREVIEW: IProductPreview = {
     id: '1',
+    colour: '',
+    frame: 0,
+    model: '',
+    wheel: 0,
     brand: 'Comanche',
     colours: ['#07a1fa', 'aqua', '#166abe'],
     frameSizes: [17, 19, 21],

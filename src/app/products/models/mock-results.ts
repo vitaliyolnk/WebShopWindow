@@ -4,5 +4,6 @@ import { FILTERS } from './mock-filters';
 
 export const SEARCH_RESULTS: IResults = {
     products: PRODUCTS_VIEWS,
-    filters: FILTERS
+    paging: null,
+    categories: FILTERS
 };

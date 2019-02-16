@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { IProductView } from '../models/product-view';
+import { IPagingView } from '../models/paging-view';
 
 @Component({
   selector: 'app-product-list',
@@ -9,6 +10,8 @@ import { IProductView } from '../models/product-view';
 export class ProductListComponent implements OnInit {
   constructor() { }
   @Input() products: IProductView[];
+  @Input() paging: IPagingView;
+
   ngOnInit() {
   }
 }

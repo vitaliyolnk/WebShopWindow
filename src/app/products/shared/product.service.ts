@@ -8,35 +8,33 @@ import { PRODUCT_PREVIEW } from '../models/mock-product-preview';
 import { IProductPreview } from '../models/product-preview';
 import { IProduct } from '../models/product';
 import { PRODUCT } from '../models/mock-product';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor() { }
+  private apiBaseUrl = 'http://localhost/veloactive/api';
+  private productsApi = `${this.apiBaseUrl}/product/read_paging.php`;
+  private options: HttpParams;
+  constructor(private httpClient: HttpClient) { }
 
-  getProducts(filters: ParamMap): Observable<IResults> {
-    if (filters.keys.length > 0) {
-      const tempSearchResults = { ...SEARCH_RESULTS };
-      const tempFilters = filters;
+  getProducts(searchParameters: ParamMap): Observable<IResults> {
 
-      console.log(JSON.stringify(tempFilters));
+    if (searchParameters.keys.length > 0) {
 
-      filters.keys.forEach(fk => {
-        switch (fk) {
-          case 'brand':
-            tempSearchResults.products = SEARCH_RESULTS.products.filter(p => p.id === 'bike' + filters.get(fk));
-            break;
-          default:
-            break;
-        }
-      }
-      );
-      this.updateFilters(tempSearchResults.filters, filters);
-      return of(tempSearchResults);
+     let queryParams: HttpParams = new HttpParams();
+     searchParameters.keys.forEach(fk => {
+          const val = searchParameters.get(fk);
+          if (val) {
+          queryParams = queryParams.append(fk, val);
+          }
+      });
+      this.options = queryParams;
     }
-    return of(SEARCH_RESULTS);
+
+   return this.httpClient.get<IResults>(this.productsApi, {params: this.options});
   }
 
   getProductPreview(productId: string): Observable<IProductPreview> {

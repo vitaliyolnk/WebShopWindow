@@ -1,43 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { ParamMap, NavigationExtras, Router, RouterStateSnapshot } from '@angular/router';
+import { Component, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
+import { IPagingView } from '../models/paging-view';
 
 @Component({
   selector: 'app-pager',
   templateUrl: './pager.component.html',
   styleUrls: ['./pager.component.css']
 })
-export class PagerComponent implements OnInit {
+export class PagerComponent implements OnChanges {
 
+  @Input() paging: IPagingView;
   pager: any = {};
+  currentPage: number;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router
-    ) { }
+  ) { }
 
-  ngOnInit() {
-    this.pager = {pages: [1, 2, 3, 5, 6], currentPage: 1};
+  ngOnChanges(changes: SimpleChanges) {
+    this.setPager();
+  }
+
+  private setPager() {
+    const pageQuery = this.route.snapshot.queryParams['page'];
+    if (!pageQuery) {
+       this.currentPage = 1;
+    } else {
+      this.currentPage = +pageQuery ;
+    }
   }
 
   setPage(page: number = 1) {
-    // get pager object from service
-    this.pager = {
-      totalItems: 25,
-      currentPage: page,
-      pageSize: 20,
-      totalPages: 20,
-      startPage: 1,
-      endPage: 10,
-      startIndex: 1,
-      endIndex: 10,
-      pages: [1, 2, 3, 5, 6]
-  };
 
-  const navExtras: NavigationExtras = {
-      queryParams: {page: page},
+    const navExtras: NavigationExtras = {
+      queryParams: { page: page },
       queryParamsHandling: 'merge'
-  };
-  this.router.navigate(['/products'], navExtras);
-    // get current page of items
-  //  this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
-}
+    };
+    this.router.navigate(['/products'], navExtras);
+  }
 }

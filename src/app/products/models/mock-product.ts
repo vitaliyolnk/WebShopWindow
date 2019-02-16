@@ -3,6 +3,10 @@ import { IProduct } from './product';
 export const PRODUCT: IProduct = {
     id: '1',
     brand: 'Comanche',
+    colour: '',
+    frame: 0,
+    model: '',
+    wheel: 0,
     colours: ['#07a1fa', 'aqua', '#166abe'],
     frameSizes: [17, 19, 21],
     type: 'Mountain',

@@ -4,7 +4,6 @@ import { IProduct } from '../models/product';
 import { PRODUCT } from '../models/mock-product';
 
 @Component({
-  selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css',
   '../shared/shared.styles.css']
