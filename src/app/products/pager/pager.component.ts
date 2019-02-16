@@ -10,7 +10,6 @@ import { IPagingView } from '../models/paging-view';
 export class PagerComponent implements OnChanges {
 
   @Input() paging: IPagingView;
-  pager: any = {};
   currentPage: number;
 
   constructor(

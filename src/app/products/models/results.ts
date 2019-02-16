@@ -5,5 +5,8 @@ import { IPagingView } from './paging-view';
 export interface IResults {
     products: IProductView[];
     paging: IPagingView;
+}
+
+export interface ICategories {
     categories: IFilterGroup[];
 }

@@ -25,9 +25,9 @@ export class SidebarComponent implements OnInit {
     */
     private setUpFilters() {
         this.filterList.forEach(fl => {
-            if (fl.filters.some(f => f.isSelected)) {
-                const selected = fl.filters.filter(f => f.isSelected);
-                this.selectedFiltersList.push({ groupName: fl.groupName,
+            if (fl.items.some(f => f.isSelected)) {
+                const selected = fl.items.filter(f => f.isSelected);
+                this.selectedFiltersList.push({ groupName: fl.group,
                     selectedFilters: selected.map(fld => +fld.id) });
             }
         });

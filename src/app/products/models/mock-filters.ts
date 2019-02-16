@@ -1,31 +1,31 @@
 import { IFilterGroup } from './filter-group';
 
 export const FILTERS: IFilterGroup[] = [{
-    groupName: 'brand',
-    filters: [
-        { id: '1', name: 'Comanche', quantity: 45, isSelected: false },
-        { id: '2', name: 'Bianchi', quantity: 35, isSelected: false  },
-        { id: '3', name: 'Ranger', quantity: 30, isSelected: false  }]
+    group: 'brand',
+    items: [
+        { id: '1', name: 'Comanche', isSelected: false },
+        { id: '2', name: 'Bianchi',  isSelected: false  },
+        { id: '3', name: 'Ranger',  isSelected: false  }]
 },
 {
-    groupName: 'biketype',
-    filters: [
-        { id: '11', name: 'Mountain', quantity: 45, isSelected: false  },
-        { id: '21', name: 'Touring', quantity: 35, isSelected: false },
-        { id: '31', name: 'City', quantity: 30, isSelected: false  }]
+    group: 'biketype',
+    items: [
+        { id: '11', name: 'Mountain', isSelected: false  },
+        { id: '21', name: 'Touring',  isSelected: false },
+        { id: '31', name: 'City',  isSelected: false  }]
 },
 {
-    groupName: 'framesize',
-    filters: [
-        { id: '111', name: '17', quantity: 45, isSelected: false  },
-        { id: '211', name: '19', quantity: 35, isSelected: false  },
-        { id: '311', name: '21', quantity: 30, isSelected: false  }]
+    group: 'framesize',
+    items: [
+        { id: '111', name: '17',  isSelected: false  },
+        { id: '211', name: '19',  isSelected: false  },
+        { id: '311', name: '21',  isSelected: false  }]
 },
 {
-    groupName: 'wheelwize',
-    filters: [
-        { id: '112', name: '26', quantity: 45, isSelected: false  },
-        { id: '212', name: '27', quantity: 35, isSelected: false  },
-        { id: '313', name: '29', quantity: 30, isSelected: false  }]
+    group: 'wheelwize',
+    items: [
+        { id: '112', name: '26',  isSelected: false  },
+        { id: '212', name: '27', isSelected: false  },
+        { id: '313', name: '29', isSelected: false  }]
 }
 ];

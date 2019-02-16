@@ -13,6 +13,7 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { ProductDetailsResolver } from './products/shared/product-details-resolver.service';
 import { ProductService } from './products/shared/product.service';
 import { PagerComponent } from './products/pager/pager.component';
+import { CategoriesService } from './products/shared/categories.service';
 
 const appRoutes: Routes = [
   { path: 'products', component: ProductsComponent },
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     FormsModule
   ],
   providers: [
+    CategoriesService,
     ProductService,
     ProductDetailsResolver
   ],

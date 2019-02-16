@@ -47,14 +47,14 @@ export class ProductService {
 
 
   // not used
-  getSearchResuts(filters?: IFilterGroup[]): Observable<IResults> {
+ /*  getSearchResuts(filters?: IFilterGroup[]): Observable<IResults> {
     if (filters) {
       const tempSearchResults = { ...SEARCH_RESULTS };
-      const selectedGroups = filters.filter(fl => fl.filters.find(f => f.isSelected));
+      const selectedGroups = filters.filter(fl => fl.items.find(f => f.isSelected));
       selectedGroups.forEach(sf => {
-        switch (sf.groupName) {
+        switch (sf.group) {
           case 'Brand': {
-            const brandFilters = sf.filters.filter(f => f.isSelected);
+            const brandFilters = sf.items.filter(f => f.isSelected);
             brandFilters.forEach(bf => {
               tempSearchResults.products = SEARCH_RESULTS.products.filter(pr => pr.brand === bf.name);
             }
@@ -69,18 +69,18 @@ export class ProductService {
       return of(SEARCH_RESULTS);
     }
   }
-
+ */
   /** Sets the value of filters' isSelected property to 'true'
    * based on the matching search parameter value
   */
-  private updateFilters(searchResultsFilters: IFilterGroup[], selectedFilters?: ParamMap) {
+ /*  private updateFilters(searchResultsFilters: IFilterGroup[], selectedFilters?: ParamMap) {
     searchResultsFilters.forEach(fg => {
-      const selectedFilter = selectedFilters.getAll(fg.groupName);
-      fg.filters.forEach(fgf => {
+      const selectedFilter = selectedFilters.getAll(fg.group);
+      fg.items.forEach(fgf => {
         if (selectedFilter.find(gfl => gfl === fgf.id)) {
           fgf.isSelected = true;
         }
       });
     });
-  }
+  } */
 }
