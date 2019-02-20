@@ -1,18 +1,19 @@
-<div *ngIf="productPreview" id="productModal" tabindex="-1" role="dialog" class="modal fade quickview" style="display: none;" aria-hidden="true">
+
+<div id="productModal" tabindex="-1" role="dialog" class="modal fade quickview" style="display: none;" aria-hidden="true">
   <div role="document" class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div *ngIf="productPreview" class="modal-content">
       <button type="button" data-dismiss="modal" aria-label="Close" class="close modal-close">
         <span class="fas fa-window-close fa-2x align-items-center"></span>
       </button>
       <div class="modal-body">
         <div class="row">
           <div class="col-lg-8">
-            <img [src]='productPreview.imageUrls' alt="product" class="img-fluid">
+            <img [src]='productPreview.image_url' alt="product" class="img-fluid">
           </div>
           <div class="col-lg-4 d-flex align-items-center">
             <div>
               <h4 class="mt-4 mt-lg-1">{{productPreview.brand}}</h4>
-              <h4 class="mb-4 mt-4 mt-lg-1">{{productPreview.title}}</h4>
+              <h4 class="mb-4 mt-4 mt-lg-1">{{productPreview.model}} {{productPreview.frame}} x {{productPreview.wheel}}</h4>
               <div class="d-flex align-items-center justify-content-between mb-4">
                 <ul class="list-inline mb-0">
                   <li class="list-inline-item h4 font-weight-light mb-0">{{productPreview.price |
@@ -27,20 +28,20 @@
                 </div>
                 <div class="col-sm-6 col-lg-12 detail-option mb-3">
                   <h6 class="detail-option-heading">Frame size</h6>
-                  <span *ngFor = "let frame of productPreview.frameSizes" 
+                  <span
                   class="badge badge-light mr-1 text-muted detail-option-badge">
-                    {{frame}}</span>
+                    {{productPreview.frame}}</span>
                 </div>
                 <div class="col-sm-6 col-lg-12 detail-option mb-3">
                   <h6 class="detail-option-heading">Wheel size</h6>
-                  <span *ngFor = "let wheel of productPreview.wheelSizes" 
+                  <span
                   class="badge badge-light mr-1 text-muted detail-option-badge">
-                    {{wheel}}</span>
+                    {{productPreview.wheel}}</span>
                 </div>
                 <div class="col-sm-6 col-lg-12 detail-option mb-3">
                   <h6 class="detail-option-heading">Colour</h6>
-                  <span *ngFor = "let colour of productPreview.colours" 
-                  [ngStyle]="{'background-color': colour}" class="product-colour"></span>
+                  <span 
+                  [ngStyle]="{'background-color': productPreview.colour}" class="product-colour"></span>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ProductService } from '../shared/product.service';
 import { IProductPreview } from '../models/product-preview';
 
@@ -8,18 +8,16 @@ import { IProductPreview } from '../models/product-preview';
   styleUrls: ['./quick-view.component.css',
   '../shared/shared.styles.css']
 })
-export class QuickViewComponent implements OnInit, OnDestroy {
+export class QuickViewComponent {
 
-  constructor(private productService: ProductService) { }
   productPreview: IProductPreview;
-  ngOnInit() {
-  }
+  private errorMessage: string;
+  constructor(private productService: ProductService) { }
 
-  ngOnDestroy() {
-    console.log('Destroyed Quick view');
-  }
-
-  getProductPreview(productId: string) {
-    this.productService.getProductPreview(productId).subscribe(product => this.productPreview = product);
-  }
+ getProductPreview(productId: string) {
+  this.productService.getProductPreview(productId)
+   .subscribe(product => { this.productPreview = product;
+    },
+    error =>  this.errorMessage = <any>error);
+ }
 }

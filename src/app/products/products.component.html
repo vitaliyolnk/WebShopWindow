@@ -2,10 +2,10 @@
     <div class="px-xl-5">
         <div class="row">
             <!-- Grid -->
-            <app-product-list [products] = "results.products.products" [paging]="results.products.paging" class="products-grid col-xl-10 col-lg-9 order-lg-2"></app-product-list>
+            <app-product-list [products] = "results.productResult.products" [paging]="results.productResult.paging" class="products-grid col-xl-10 col-lg-9 order-lg-2"></app-product-list>
             <!-- Grid end -->
             <!-- Sidebar -->
-            <app-sidebar [filterList] = "results.categories.categories" class="sidebar col-xl-2 col-lg-3 pr-xl-5 order-lg-1"></app-sidebar>
+            <app-sidebar [filterList] = "results.categoryResult.categories" class="sidebar col-xl-2 col-lg-3 pr-xl-5 order-lg-1"></app-sidebar>
             <!-- Sidebar end -->
         </div>
     </div>

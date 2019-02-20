@@ -5,13 +5,13 @@
   <div id="filterMenu" class="expand-lg collapse">
     <h6 class="sidebar-heading d-none d-lg-block">{{filterGroup.group}}</h6>
     <form action="#" class="mt-4 mt-lg-0">
-      <div *ngFor="let filter of filterGroup.items" class="form-group mb-1">
+      <div *ngFor="let filter of filterGroup.items; trackBy: trackById" class="form-group mb-1">
         <div class="custom-control custom-checkbox">
-          <input id="{{filter.name}}" type="checkbox" 
-           (change)="filterResults(filterGroup.name, filter.id, $event.target.checked)" 
-          name="{{filterGroup.name}}_{{filter.name}}" class="custom-control-input"
+          <input id="{{filterGroup.group}}_{{filter.id}}" type="checkbox" 
+           (change)="filterResults(filterGroup.group, filter.id, $event.target.checked)" 
+          name="{{filterGroup.group}}_{{filter.id}}" class="custom-control-input"
           [checked]="filter.isSelected">
-          <label for="{{filter.name}}" class="custom-control-label">{{filter.name}}</label>
+          <label for="{{filterGroup.group}}_{{filter.id}}" class="custom-control-label">{{filter.name}}</label>
         </div>
       </div>
     </form>

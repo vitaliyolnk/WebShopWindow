@@ -1,40 +1,72 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { Router, NavigationExtras, ParamMap } from '@angular/router';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Router, NavigationExtras, ParamMap, ActivatedRoute, Params } from '@angular/router';
 import { IFilterGroup } from '../models/filter-group';
 import { ISelectedFilters } from '../models/selected-filters';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnChanges {
+
     @Input() filterList: IFilterGroup[];
     selectedFiltersList: ISelectedFilters[];
+    count = 1;
     constructor(
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
         this.selectedFiltersList = new Array<ISelectedFilters>();
         this.setUpFilters();
+        this.isFilterSelected();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        this.isFilterSelected();
     }
 
     /** Populates selected filters if results
     * the page is accessed directly via URL
     */
     private setUpFilters() {
+        const queryParams = this.route.snapshot.queryParamMap;
         this.filterList.forEach(fl => {
-            if (fl.items.some(f => f.isSelected)) {
-                const selected = fl.items.filter(f => f.isSelected);
-                this.selectedFiltersList.push({ groupName: fl.group,
-                    selectedFilters: selected.map(fld => +fld.id) });
+            if (queryParams.has(fl.group)) {
+                this.selectedFiltersList.push({
+                    groupName: fl.group,
+                    selectedFilters: queryParams.getAll(fl.group).map(fld => +fld)
+                });
             }
         });
     }
 
+    // Set selected filter flag
+    private isFilterSelected() {
+        if (this.selectedFiltersList) {
+            this.selectedFiltersList.forEach(sfl => {
+                if (this.filterList.some(fl => fl.group === sfl.groupName)) {
+                    const selectedFilterGroup = this.filterList.find(fl => fl.group === sfl.groupName);
+                    selectedFilterGroup.items.forEach(sfg => {
+                        if (sfl.selectedFilters.find(gfl => gfl === +sfg.id)) {
+                            sfg.isSelected = true;
+                        }
+                    }
+                    );
+                }
+            });
+        }
+    }
+
+    trackById(index, item) {
+        return item.name + item.id;
+    }
     /** Apply filters */
     filterResults(filterGroupName: string, selectionId: string, isSelected: boolean) {
+
         if (isSelected) {
             // check if the same filter group has been selected
             // and add selected value to the group

@@ -2,7 +2,7 @@
   <div *ngFor="let product of products" class="col-xl-3 col-lg-4 col-sm-6">
     <div class="product">
       <div class="product-image">
-        <img [src]='product.thumbUrl' alt="product" class="img-fluid">
+        <img [src]='product.thumb_url' alt="product" class="img-fluid">
         <div class="product-hover-overlay">
           <a [routerLink]="[product.id]" class="product-hover-overlay-link"></a>
           <div class="product-hover-overlay-buttons">

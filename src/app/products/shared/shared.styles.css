@@ -4,6 +4,7 @@
     font-size:1rem;
     color:#495057
    }
+
 .detail-option-badge {
     position:relative;
     border:1px solid #07a1fa !important;
@@ -14,8 +15,8 @@
 .product-colour {
     position: relative;
     display: inline-block;
-    width: 28px;
-    height: 28px;
+    width: 35px;
+    height: 35px;
     margin-bottom: 0;
     border-radius: 50%;
     box-shadow: inset 0 0 0 5px #fff,0 0 0 1px #ced4da;
