@@ -20,9 +20,8 @@ export class ProductService {
   constructor(private httpClient: HttpClient) { }
 
   getProducts(searchParameters: ParamMap): Observable<IResults> {
-    let queryParams: HttpParams = new HttpParams();
+    let queryParams = new HttpParams();
     if (searchParameters.keys.length > 0) {
-
       searchParameters.keys.forEach(fk => {
         const val = searchParameters.get(fk);
         if (val) {
@@ -35,23 +34,27 @@ export class ProductService {
   }
 
   getProductPreview(productId: string): Observable<IProductPreview> {
-
     if (productId) {
-
       const queryParams = new HttpParams()
         .set('id', productId);
-
       return this.httpClient
       .get<IProductPreview>(this.productPreviewApi,
                 { params: queryParams });
     } else {
       return empty();
     }
-
   }
 
   getProduct(productId: string): Observable<IProduct> {
-    return of(PRODUCT);
+    if (productId) {
+      const queryParams = new HttpParams()
+        .set('id', productId);
+      return this.httpClient
+      .get<IProduct>(this.productApi,
+                { params: queryParams });
+    } else {
+      return empty();
+    }
   }
 
 

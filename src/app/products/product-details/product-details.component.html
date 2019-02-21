@@ -2,15 +2,15 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-7 py-3 order-2 order-lg-1">
-        <img [src]='productDetails.imageUrls' alt="product" class="img-fluid">
+        <img [src]='productDetails.image_url' alt="product" class="img-fluid">
       </div>
       <div class="d-flex align-items-center col-lg-5 col-xl-5 pl-lg-5 order-1 order-lg-2">
         <div>
           <ul class="breadcrumb justify-content-start">
             <li class="breadcrumb-item"><a href="/products">Product list</a></li>
-            <li class="breadcrumb-item active">{{productDetails.brand}} {{productDetails.title}}</li>
+            <li class="breadcrumb-item active">{{productDetails.brand}} {{productDetails | productTitle}}</li>
           </ul>
-          <h2 class="mb-4">{{productDetails.brand}} {{productDetails.title}}</h2>
+          <h2 class="mb-4">{{productDetails.brand}} {{productDetails | productTitle}}</h2>
           <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
             <ul class="list-inline mb-2 mb-sm-0">
               <li class="list-inline-item h4 font-weight-light mb-0">{{productDetails.price |
@@ -24,17 +24,17 @@
           </div>
           <div class="col-sm-6 col-lg-12 detail-option mb-3">
             <h6 class="detail-option-heading">Frame size</h6>
-            <span *ngFor="let frame of productDetails.frameSizes" class="badge badge-light mr-1 text-muted detail-option-badge">
-              {{frame}}</span>
+            <span class="badge badge-light mr-1 text-muted detail-option-badge">
+              {{productDetails.frame}}</span>
           </div>
           <div class="col-sm-6 col-lg-12 detail-option mb-3">
             <h6 class="detail-option-heading">Wheel size</h6>
-            <span *ngFor="let wheel of productDetails.wheelSizes" class="badge badge-light mr-1 text-muted detail-option-badge">
-              {{wheel}}</span>
+            <span class="badge badge-light mr-1 text-muted detail-option-badge">
+              {{productDetails.wheel}}</span>
           </div>
           <div class="col-sm-6 col-lg-12 detail-option mb-3">
             <h6 class="detail-option-heading">Colour</h6>
-            <span *ngFor="let colour of productDetails.colours" [ngStyle]="{'background-color': colour}" class="product-colour"></span>
+            <span [ngStyle]="{'background-color': productDetails.colour}" class="product-colour"></span>
           </div>
         </div>
       </div>

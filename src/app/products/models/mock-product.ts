@@ -11,7 +11,7 @@ export const PRODUCT: IProduct = {
     image_url: '/assets/images/C-025-TOMAHAWK-DISC-2013-20.5-BLACK.jpg',
     price: 8000,
     thumb_url: '',
-    techData: `<table class="table table-sm table-striped">
+    tech_data: `<table class="table table-sm table-striped">
     <tr><th scope="row">Цвет</th><td>Черный-синий</td></tr>
     <tr><th scope="row">Рама</th>
     <td>Алюм. 7005 усиленная, верх. труба баттированная, ниж. труба гидроформир. с изм. сечения </td></tr>

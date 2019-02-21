@@ -14,6 +14,7 @@ import { ProductDetailsResolver } from './products/shared/product-details-resolv
 import { ProductService } from './products/shared/product.service';
 import { PagerComponent } from './products/pager/pager.component';
 import { CategoriesService } from './products/shared/categories.service';
+import { ProductTitlePipe } from './products/shared/product-title.pipe';
 
 const appRoutes: Routes = [
   { path: 'products', component: ProductsComponent },
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     SidebarComponent,
     QuickViewComponent,
     ProductDetailsComponent,
-    PagerComponent
+    PagerComponent,
+    ProductTitlePipe
   ],
   imports: [
     RouterModule.forRoot(
