@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ProductTitlePipe implements PipeTransform {
 
   transform(product: any, args?: any): any {
-    const result = [product.model, product.frame, product.wheel];
-    return result.join(' ');
+    return `${product.model} ${product.frame} ${product.wheel}`;
   }
 }

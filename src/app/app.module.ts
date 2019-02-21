@@ -15,6 +15,7 @@ import { ProductService } from './products/shared/product.service';
 import { PagerComponent } from './products/pager/pager.component';
 import { CategoriesService } from './products/shared/categories.service';
 import { ProductTitlePipe } from './products/shared/product-title.pipe';
+import { ProductTechDataPipe } from './products/shared/product-tech-data.pipe';
 
 const appRoutes: Routes = [
   { path: 'products', component: ProductsComponent },
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     QuickViewComponent,
     ProductDetailsComponent,
     PagerComponent,
-    ProductTitlePipe
+    ProductTitlePipe,
+    ProductTechDataPipe
   ],
   imports: [
     RouterModule.forRoot(
