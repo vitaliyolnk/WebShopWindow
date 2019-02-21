@@ -15,6 +15,7 @@ export class ProductService {
   private apiBaseUrl = 'http://localhost/veloactive/api';
   private productsApi = `${this.apiBaseUrl}/product/read_paging.php`;
   private productApi = `${this.apiBaseUrl}/product/read_one.php`;
+  private productPreviewApi = `${this.apiBaseUrl}/product/read_one_preview.php`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -38,11 +39,10 @@ export class ProductService {
     if (productId) {
 
       const queryParams = new HttpParams()
-        .set('id', productId)
-        .set('preview', 'true');
+        .set('id', productId);
 
       return this.httpClient
-      .get<IProductPreview>(this.productApi,
+      .get<IProductPreview>(this.productPreviewApi,
                 { params: queryParams });
     } else {
       return empty();
