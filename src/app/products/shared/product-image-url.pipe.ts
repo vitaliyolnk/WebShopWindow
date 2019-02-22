@@ -15,6 +15,5 @@ export class ProductImageUrlPipe implements PipeTransform {
         return image_url.replace('150', '600').replace('200', '900');
       }
     }
-
   }
 }
