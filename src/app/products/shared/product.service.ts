@@ -4,7 +4,6 @@ import { IResults } from '../models/results';
 import { ParamMap } from '@angular/router';
 import { IProductPreview } from '../models/product-preview';
 import { IProduct } from '../models/product';
-import { PRODUCT } from '../models/mock-product';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -23,9 +22,9 @@ export class ProductService {
     let queryParams = new HttpParams();
     if (searchParameters.keys.length > 0) {
       searchParameters.keys.forEach(fk => {
-        const val = searchParameters.get(fk);
+        const val = searchParameters.getAll(fk);
         if (val) {
-          queryParams = queryParams.append(fk, val);
+          queryParams = queryParams.append(fk, val.toString());
         }
       });
     }
