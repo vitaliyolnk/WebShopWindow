@@ -10,7 +10,6 @@ export const PRODUCT: IProduct = {
     type: 'Mountain',
     image_url: '/assets/images/C-025-TOMAHAWK-DISC-2013-20.5-BLACK.jpg',
     price: 8000,
-    thumb_url: '',
     tech_data: `<table class="table table-sm table-striped">
     <tr><th scope="row">Цвет</th><td>Черный-синий</td></tr>
     <tr><th scope="row">Рама</th>

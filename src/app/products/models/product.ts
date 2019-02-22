@@ -1,5 +1,5 @@
-import { IProductPreview } from './product-preview';
+import { IProductView } from './product-view';
 
-export interface IProduct extends IProductPreview {
+export interface IProduct extends IProductView {
 tech_data: string;
 }

@@ -6,23 +6,18 @@
         <span class="fas fa-window-close fa-2x align-items-center"></span>
       </button>
       <div class="modal-body">
-        <div *ngIf="loading" class="d-flex justify-content-center">
-          <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
-        <div *ngIf="productPreview && !loading" class="row">
+        <div *ngIf="productView" class="row">
           <div class="col-lg-8">
-            <img [src]='productPreview.image_url' alt="product" class="img-fluid">
+            <img [src]='productView.image_url |  productImageUrl : ImageView.detail' alt="product" class="img-fluid">
           </div>
           <div class="col-lg-4 d-flex align-items-center">
             <div>
-              <h4 class="mt-4 mt-lg-1">{{productPreview.brand}}</h4>
-              <h4 class="mb-4 mt-4 mt-lg-1">{{productPreview | productTitle}}
+              <h4 class="mt-4 mt-lg-1">{{productView.brand}}</h4>
+              <h4 class="mb-4 mt-4 mt-lg-1">{{productView | productTitle}}
               </h4>
               <div class="d-flex align-items-center justify-content-between mb-4">
                 <ul class="list-inline mb-0">
-                  <li class="list-inline-item h4 font-weight-light mb-0">{{productPreview.price |
+                  <li class="list-inline-item h4 font-weight-light mb-0">{{productView.price |
                     currency:'UAH':'symbol-narrow':'0.0-0'}}</li>
                 </ul>
               </div>
@@ -30,21 +25,21 @@
                 <div class="col-sm-6 col-lg-12 detail-option mb-3">
                   <h6 class="detail-option-heading">Type</h6>
                   <span class="badge badge-light mr-1 text-muted detail-option-badge">
-                    {{productPreview.type}}</span>
+                    {{productView.type}}</span>
                 </div>
                 <div class="col-sm-6 col-lg-12 detail-option mb-3">
                   <h6 class="detail-option-heading">Frame size</h6>
                   <span class="badge badge-light mr-1 text-muted detail-option-badge">
-                    {{productPreview.frame}}</span>
+                    {{productView.frame}}</span>
                 </div>
                 <div class="col-sm-6 col-lg-12 detail-option mb-3">
                   <h6 class="detail-option-heading">Wheel size</h6>
                   <span class="badge badge-light mr-1 text-muted detail-option-badge">
-                    {{productPreview.wheel}}</span>
+                    {{productView.wheel}}</span>
                 </div>
                 <div class="col-sm-6 col-lg-12 detail-option mb-3">
                   <h6 class="detail-option-heading">Colour</h6>
-                  <span [ngStyle]="{'background-color': productPreview.colour}" class="product-colour"></span>
+                  <span [ngStyle]="{'background-color': productView.colour}" class="product-colour"></span>
                 </div>
               </div>
             </div>

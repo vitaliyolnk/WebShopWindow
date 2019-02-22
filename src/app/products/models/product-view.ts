@@ -1,10 +1,11 @@
 export interface IProductView {
     id: string;
+    type: string;
     brand: string;
     model: string;
     colour: string;
     frame: number;
     wheel: number;
     price: number;
-    thumb_url: string;
+    image_url: string;
 }

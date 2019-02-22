@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, empty } from 'rxjs';
+import { Observable, empty } from 'rxjs';
 import { IResults } from '../models/results';
 import { ParamMap } from '@angular/router';
-import { IProductPreview } from '../models/product-preview';
 import { IProduct } from '../models/product';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -14,7 +13,6 @@ export class ProductService {
   private apiBaseUrl = 'http://localhost/veloactive/api';
   private productsApi = `${this.apiBaseUrl}/product/read_paging.php`;
   private productApi = `${this.apiBaseUrl}/product/read_one.php`;
-  private productPreviewApi = `${this.apiBaseUrl}/product/read_one_preview.php`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -30,18 +28,6 @@ export class ProductService {
     }
 
     return this.httpClient.get<IResults>(this.productsApi, { params: queryParams });
-  }
-
-  getProductPreview(productId: string): Observable<IProductPreview> {
-    if (productId) {
-      const queryParams = new HttpParams()
-        .set('id', productId);
-      return this.httpClient
-      .get<IProductPreview>(this.productPreviewApi,
-                { params: queryParams });
-    } else {
-      return empty();
-    }
   }
 
   getProduct(productId: string): Observable<IProduct> {
