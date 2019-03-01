@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, empty } from 'rxjs';
+import { Observable, empty, EMPTY } from 'rxjs';
 import { IResults } from '../models/results';
 import { ParamMap } from '@angular/router';
 import { IProduct } from '../models/product';
@@ -38,7 +38,7 @@ export class ProductService {
       .get<IProduct>(this.productApi,
                 { params: queryParams });
     } else {
-      return empty();
+      return EMPTY;
     }
   }
 

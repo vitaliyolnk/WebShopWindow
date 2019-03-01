@@ -1,0 +1,26 @@
+.input-invisible {
+    position:absolute;
+    width:1px;
+    height:1px;
+    opacity:0
+   }
+.btn-colour {
+    position:relative;
+    display:inline-block;
+    width:35px;
+    height:35px;
+    margin-bottom:0;
+    border-radius:50%;
+    box-shadow:inset 0 0 0 3px #fff,0 0 0 1px #ced4da;
+    background-position:center;
+    background-size:cover;
+    cursor:pointer;
+    transition:border-color .1s
+   }
+.btn-colour:hover {
+    box-shadow:inset 0 0 0 3px #fff,0 0 0 1px #868e96
+   }
+.btn-colour.active {
+    box-shadow:inset 0 0 0 3px #fff,0 0 0 2px #495057;
+    cursor: default;
+   }

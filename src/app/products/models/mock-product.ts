@@ -10,7 +10,7 @@ export const PRODUCT: IProduct = {
     type: 'Mountain',
     image_url: '/assets/images/C-025-TOMAHAWK-DISC-2013-20.5-BLACK.jpg',
     price: 8000,
-    tech_data: `<table class="table table-sm table-striped">
+    features: `<table class="table table-sm table-striped">
     <tr><th scope="row">Цвет</th><td>Черный-синий</td></tr>
     <tr><th scope="row">Рама</th>
     <td>Алюм. 7005 усиленная, верх. труба баттированная, ниж. труба гидроформир. с изм. сечения </td></tr>
@@ -37,5 +37,6 @@ export const PRODUCT: IProduct = {
     <tr><th scope="row">Покрышки</th><td>CST COMP COOPERHEAD, 26x2,00</td></tr>
     <tr><th scope="row">Ко-лво передач</th><td>27</td></tr>
     <tr><th scope="row">Вес</th><td>13,6 кг</td></tr>
-</table>`
+</table>`,
+relatedProducts: null
 };

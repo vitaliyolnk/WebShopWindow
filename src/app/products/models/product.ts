@@ -1,5 +1,6 @@
 import { IProductView } from './product-view';
 
 export interface IProduct extends IProductView {
-tech_data: string;
+    features: string;
+    relatedProducts: IProductView[];
 }

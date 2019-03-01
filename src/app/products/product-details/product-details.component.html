@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-7 py-3 order-2 order-lg-1">
-        <img [src]='productDetails.image_url' alt="product" class="img-fluid">
+        <img [src]='productImage' alt="product" class="img-fluid">
       </div>
       <div class="d-flex align-items-center col-lg-5 col-xl-5 pl-lg-5 order-1 order-lg-2">
         <div>
@@ -24,17 +24,26 @@
           </div>
           <div class="col-sm-6 col-lg-12 detail-option mb-3">
             <h6 class="detail-option-heading">Frame size</h6>
-            <span class="badge badge-light mr-1 text-muted detail-option-badge">
-              {{productDetails.frame}}</span>
+            <span *ngFor="let frameSize of productDetails | productRelated : ProductSpec.frame"
+              class="badge badge-light mr-1 text-muted detail-option-badge">
+              {{frameSize}}</span>
           </div>
           <div class="col-sm-6 col-lg-12 detail-option mb-3">
             <h6 class="detail-option-heading">Wheel size</h6>
-            <span class="badge badge-light mr-1 text-muted detail-option-badge">
-              {{productDetails.wheel}}</span>
+            <span *ngFor="let wheel of productDetails | productRelated : ProductSpec.wheel"
+              class="badge badge-light mr-1 text-muted detail-option-badge">
+              {{wheel}}</span>
           </div>
           <div class="col-sm-6 col-lg-12 detail-option mb-3">
             <h6 class="detail-option-heading">Colour</h6>
-            <span [ngStyle]="{'background-color': productDetails.colour}" class="product-colour"></span>
+            <ul class="list-inline mb-0 colours-wrapper">
+              <li *ngFor="let colour of productDetails | productRelated : ProductSpec.colour" class="list-inline-item">
+                <label for="colour_{{colour}}" [ngStyle]="{'background-color': colour}" class="btn-colour" 
+                [ngClass] = "{'active':colour===productColour}"> </label>
+                <input type="radio" name="colour" value="colour_{{colour}}" id="colour_{{colour}}" required=""
+                  class="input-invisible" (change) = "UpdateImage(colour)" />
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -46,7 +55,7 @@
     <div class="py-4">
       <div class="px-3">
         <h6 class="detail-option-heading">Technical data</h6>
-        <p class="text-muted" [innerHTML]="productDetails.tech_data | productTechData"></p>
+        <p class="text-muted" [innerHTML]="productDetails.features | productFeatures"></p>
       </div>
     </div>
     <!-- <ul role="tablist" class="nav nav-tabs flex-column flex-sm-row">

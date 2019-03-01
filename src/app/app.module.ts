@@ -15,8 +15,9 @@ import { ProductService } from './products/shared/product.service';
 import { PagerComponent } from './products/pager/pager.component';
 import { CategoriesService } from './products/shared/categories.service';
 import { ProductTitlePipe } from './products/shared/product-title.pipe';
-import { ProductTechDataPipe } from './products/shared/product-tech-data.pipe';
+import { ProductFeaturesPipe } from './products/shared/product-features.pipe';
 import { ProductImageUrlPipe } from './products/shared/product-image-url.pipe';
+import { ProductRelatedPipe } from './products/shared/product-related.pipe';
 
 const appRoutes: Routes = [
   { path: 'products', component: ProductsComponent },
@@ -38,8 +39,9 @@ const appRoutes: Routes = [
     ProductDetailsComponent,
     PagerComponent,
     ProductTitlePipe,
-    ProductTechDataPipe,
-    ProductImageUrlPipe
+    ProductFeaturesPipe,
+    ProductImageUrlPipe,
+    ProductRelatedPipe
   ],
   imports: [
     RouterModule.forRoot(

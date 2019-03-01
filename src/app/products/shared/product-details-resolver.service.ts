@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
-
 import { IProduct } from '../models/product';
 import { ProductService } from './product.service';
-
-
 
 @Injectable()
 export class ProductDetailsResolver implements Resolve<IProduct> {
@@ -17,15 +14,13 @@ export class ProductDetailsResolver implements Resolve<IProduct> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<IProduct> {
 
-        const modelId = route.params.id;
+        const productId = route.params.id;
 
-       return this.productService.getProduct(modelId)
+       return this.productService.getProduct(productId)
        .pipe(map((product) => {
         if (product) {
-            console.log(JSON.stringify(product));
             return product;
          }
-         console.log('No product!');
             return null; }));
     }
 }
