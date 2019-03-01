@@ -1,31 +1,32 @@
-<nav *ngIf="paging.pages && paging.pages.length" aria-label="page navigation" class="d-flex justify-content-center mb-5 mt-3">
-        <ul class="pagination">
-            <li class="page-item" [ngClass]="{disabled:paging.first_page === 0}">
-                <a class="page-link" aria-label="First" (click)="setPage(paging.first_page)">
-                    <span aria-hidden="true">First</span>
-                    <span class="sr-only">First</span></a>
-            </li>
-            <li class="page-item" [ngClass]="{disabled:paging.first_page === 0}">
-                <a class="page-link" aria-label="Previous" (click)="setPage(currentPage - 1)">
-                    <span aria-hidden="true">Previous</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li *ngFor="let item of paging.pages" class="page-item" [ngClass]="{active:item.current_page}">
-                <a class="page-link" (click)="setPage(item.page)">{{item.page}}</a>
-            </li>
-            <li class="page-item" [ngClass]="{disabled:paging.last_page === 0}">
-                <a class="page-link" aria-label="Next" (click)="setPage(currentPage + 1)">
-                    <span aria-hidden="true">Next</span>
-                    <span class="sr-only">Next</span></a>
-            </li>
-            <li class="page-item" [ngClass]="{disabled:paging.last_page === 0}">
-                <a class="page-link" aria-label="Last" (click)="setPage(paging.last_page)">
-                    <span aria-hidden="true">Last</span>
-                    <span class="sr-only">Last</span></a>
-            </li>
-        </ul>
-    </nav>
+<nav *ngIf="paging.pages && paging.pages.length" aria-label="page navigation"
+    class="d-flex justify-content-center mb-5 mt-3">
+    <ul class="pagination">
+        <li class="page-item" [ngClass]="{disabled:paging.first_page === 0}">
+            <button class="page-link" aria-label="First" (click)="setPage(paging.first_page)">
+                <span aria-hidden="true">First</span>
+                <span class="sr-only">First</span></button>
+        </li>
+        <li class="page-item" [ngClass]="{disabled:paging.first_page === 0}">
+            <button class="page-link" aria-label="Previous" (click)="setPage(currentPage - 1)">
+                <span aria-hidden="true">Previous</span>
+                <span class="sr-only">Previous</span>
+            </button>
+        </li>
+        <li *ngFor="let item of paging.pages" class="page-item" [ngClass]="{active:item.current_page}">
+            <button class="page-link" (click)="setPage(item.page)">{{item.page}}</button>
+        </li>
+        <li class="page-item" [ngClass]="{disabled:paging.last_page === 0}">
+            <button class="page-link" aria-label="Next" (click)="setPage(currentPage + 1)">
+                <span aria-hidden="true">Next</span>
+                <span class="sr-only">Next</span></button>
+        </li>
+        <li class="page-item" [ngClass]="{disabled:paging.last_page === 0}">
+            <button class="page-link" aria-label="Last" (click)="setPage(paging.last_page)">
+                <span aria-hidden="true">Last</span>
+                <span class="sr-only">Last</span></button>
+        </li>
+    </ul>
+</nav>
 
 <!-- <nav *ngIf="pager.pages && pager.pages.length" aria-label="page navigation" class="d-flex justify-content-center mb-5 mt-3">
     <ul class="pagination">
