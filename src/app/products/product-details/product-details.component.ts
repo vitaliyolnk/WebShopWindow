@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../models/product';
 import { ProductSpec } from '../shared/product-spec.enum';
+import { PreviousRouteService } from '../shared/previous-route.service';
 
 @Component({
   templateUrl: './product-details.component.html',
@@ -9,16 +10,22 @@ import { ProductSpec } from '../shared/product-spec.enum';
     '../shared/shared.styles.css']
 })
 export class ProductDetailsComponent implements OnInit {
+
   public ProductSpec = ProductSpec;
+  public productListUrl: string;
   public productColour: string;
   public productImage: string;
   public productDetails: IProduct;
-  constructor(private route: ActivatedRoute) { }
+
+  constructor(private route: ActivatedRoute,
+    private previousRouteService: PreviousRouteService) {
+  }
 
   ngOnInit() {
     this.productDetails = this.route.snapshot.data['productDetails'];
     this.productColour = this.productDetails.colour;
     this.productImage = this.productDetails.image_url;
+    this.productListUrl = this.getProductListUrl();
   }
 
   UpdateImage(colour: string) {
@@ -26,9 +33,14 @@ export class ProductDetailsComponent implements OnInit {
     if (this.productDetails.relatedProducts) {
       const colourMatchingProduct = this.productDetails.relatedProducts
         .find(rp => rp.colour === colour);
-        this.productImage = colourMatchingProduct
+      this.productImage = colourMatchingProduct
         ? colourMatchingProduct.image_url
         : this.productDetails.image_url;
     }
+  }
+
+  private getProductListUrl() {
+    this.productListUrl = this.previousRouteService.getPreviousUrl();
+    return this.productListUrl ? this.productListUrl : '/products';
   }
 }

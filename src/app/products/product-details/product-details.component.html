@@ -7,7 +7,7 @@
       <div class="d-flex align-items-center col-lg-5 col-xl-5 pl-lg-5 order-1 order-lg-2">
         <div>
           <ul class="breadcrumb justify-content-start">
-            <li class="breadcrumb-item"><a href="/products">Product list</a></li>
+            <li class="breadcrumb-item"><a [href]="productListUrl">Product list</a></li>
             <li class="breadcrumb-item active">{{productDetails.brand}} {{productDetails | productTitle}}</li>
           </ul>
           <h2 class="mb-4">{{productDetails.brand}} {{productDetails | productTitle}}</h2>
