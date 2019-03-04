@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { Router, NavigationExtras, ParamMap, ActivatedRoute, Params } from '@angular/router';
 import { IFilterGroup } from '../models/filter-group';
 import { ISelectedFilters } from '../models/selected-filters';
-import { flatMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-sidebar',
@@ -22,11 +21,11 @@ export class SidebarComponent implements OnInit, OnChanges {
     ngOnInit() {
         this.selectedFiltersList = new Array<ISelectedFilters>();
         this.setUpFilters();
-        this.isFilterSelected();
+        this.setFilterSelected();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.isFilterSelected();
+        this.setFilterSelected();
     }
 
     /** Populates selected filters if results
@@ -45,7 +44,7 @@ export class SidebarComponent implements OnInit, OnChanges {
     }
 
     // Set selected filter flag
-    private isFilterSelected() {
+    private setFilterSelected() {
         if (this.selectedFiltersList) {
             this.selectedFiltersList.forEach(sfl => {
                 if (this.filterList.some(fl => fl.group === sfl.groupName)) {
@@ -92,8 +91,17 @@ export class SidebarComponent implements OnInit, OnChanges {
                 this.selectedFiltersList.splice(selectedGroupIndex, 1);
             }
         }
+
         const parameters = {} as ParamMap;
-        this.selectedFiltersList.forEach(fl => parameters[fl.groupName] = [...fl.selectedFilters]);
+
+        // set query params for selected filters
+        this.selectedFiltersList.forEach(fl => {
+            parameters[fl.groupName] = [...fl.selectedFilters];
+        });
+
+        // update query params with non-filter query parameters
+        parameters['ps'] = this.route.snapshot.queryParamMap.get('ps');
+        parameters['srt'] = this.route.snapshot.queryParamMap.get('srt');
 
         const navExtras: NavigationExtras = {
             queryParams: parameters

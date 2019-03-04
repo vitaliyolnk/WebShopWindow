@@ -1,3 +1,20 @@
+<header class="product-grid-header">
+  <div class="mr-3 mb-3">
+    Showing <strong>{{paging.from_item}} - {{paging.to_item}} </strong>of <strong>{{paging.total_items}} </strong>products
+  </div>
+  <div class="mr-3 mb-3"><span class="mr-2">Show</span>
+    <div *ngFor="let pageSizeOption of pageSizeOptions" class="custom-control custom-radio custom-control-inline">
+      <input type="radio" class="custom-control-input" id="pageSize_{{pageSizeOption}}" 
+      name="ps" [value]="pageSizeOption" (click)="setPageSize(pageSizeOption)" [checked]="pageSizeOption === pageSize">
+      <label class="custom-control-label" for="pageSize_{{pageSizeOption}}">{{pageSizeOption}}</label>
+    </div>
+  </div>
+  <div class="mb-3 d-flex align-items-center"><span class="d-inline-block mr-1">Sort by price</span>
+    <select  (change)="selectSortOrder($event.target.value)" class="custom-select w-auto border-0">
+      <option *ngFor="let sort of priceSortOptions" [value]="sort.value" [selected]="sort.value==priceSortOrder">{{sort.name}}</option>
+    </select>
+  </div>
+</header>
 <div class="row">
   <div *ngFor="let product of products" class="col-xl-3 col-lg-4 col-sm-6">
     <div class="product">
@@ -8,7 +25,6 @@
           <div class="product-hover-overlay-buttons">
             <a [routerLink]="[product.id]" class="btn btn-dark btn-view">
               <i class="fa-search fa"></i>
-              <span class="btn-view-label ml-2">View</span>
             </a>
             <button (click)="quickView.productView = product" data-toggle="modal" data-target="#productModal"
               class="btn btn-outline-dark btn-product-right">
@@ -20,11 +36,10 @@
       <div class="py-2">
         <p class="text-muted text-sm mb-1">{{product.brand}}</p>
         <h3 class="h6 text-uppercase mb-1">
-          <a [routerLink]="[product.id]" class="text-dark">{{product | productTitle}}        
-              <span [ngStyle]="{'background-color': product.colour}" class="product-list-colour"></span>
+          <a [routerLink]="[product.id]" class="text-dark">{{product | productTitle}}
+            <span [ngStyle]="{'background-color': product.colour}" class="product-list-colour"></span>
           </a>
         </h3>
-       
         <span class="text-muted">{{product.price | currency:'UAH':'symbol-narrow':'0.0-0'}}</span>
       </div>
     </div>
