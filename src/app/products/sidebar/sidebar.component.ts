@@ -108,4 +108,17 @@ export class SidebarComponent implements OnInit, OnChanges {
         };
         this.router.navigate(['/products'], navExtras);
     }
+
+    clearAllFilters() {
+        this.selectedFiltersList = [];
+        const parameters = {} as ParamMap;
+         // update query params with non-filter query parameters
+         parameters['ps'] = this.route.snapshot.queryParamMap.get('ps');
+         parameters['srt'] = this.route.snapshot.queryParamMap.get('srt');
+
+         const navExtras: NavigationExtras = {
+             queryParams: parameters
+         };
+        this.router.navigate(['/products'], navExtras);
+    }
 }
