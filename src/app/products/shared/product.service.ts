@@ -34,6 +34,7 @@ export class ProductService {
     if (productId) {
       const queryParams = new HttpParams()
         .set('id', productId);
+
       return this.httpClient
       .get<IProduct>(this.productApi,
                 { params: queryParams });

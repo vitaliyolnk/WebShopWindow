@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,6 +18,8 @@ import { ProductTitlePipe } from './products/shared/product-title.pipe';
 import { ProductFeaturesPipe } from './products/shared/product-features.pipe';
 import { ProductImageUrlPipe } from './products/shared/product-image-url.pipe';
 import { ProductRelatedPipe } from './products/shared/product-related.pipe';
+import { HttpErrorInterceptor } from './products/shared/http-error-interceptor';
+import { ErrorComponent } from './error/error.component';
 
 const appRoutes: Routes = [
   { path: 'products', component: ProductsComponent },
@@ -25,8 +27,9 @@ const appRoutes: Routes = [
     path: 'products/:id', component: ProductDetailsComponent,
     resolve: { productDetails: ProductDetailsResolver }
   },
+  { path: 'error', component: ErrorComponent },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: '**', component: ProductsComponent }
+  { path: '**', component: ErrorComponent, data: { error: 404 } },
 ];
 
 @NgModule({
@@ -41,7 +44,8 @@ const appRoutes: Routes = [
     ProductTitlePipe,
     ProductFeaturesPipe,
     ProductImageUrlPipe,
-    ProductRelatedPipe
+    ProductRelatedPipe,
+    ErrorComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -55,7 +59,13 @@ const appRoutes: Routes = [
   providers: [
     CategoriesService,
     ProductService,
-    ProductDetailsResolver
+    ProductDetailsResolver,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
+
   ],
   bootstrap: [AppComponent]
 })

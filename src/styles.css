@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+.text-gray-300 {
+    color: #dee2e6 !important;
+}
+.font-weight-light {
+    font-weight: 300 !important;
+}
+.pb-4, .py-4 {
+    padding-bottom: 1.5rem !important;
+}
+
+.bg-gray-800 {
+    background-color: #343a40 !important;
+}
+
+.text-muted {
+    color: #868e96 !important;
+}
+.pb-6, .py-6 {
+    padding-bottom: 6rem !important;
+}
+.pt-6, .py-6 {
+    padding-top: 6rem !important;
+}
+.bg-gray-300 {
+    background-color: #dee2e6 !important;
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+}

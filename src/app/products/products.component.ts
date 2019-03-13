@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, forkJoin } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { ProductService } from './shared/product.service';
 import { CategoriesService } from './shared/categories.service';
 
@@ -11,7 +11,7 @@ import { CategoriesService } from './shared/categories.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-
+  error: any;
   results$: Observable<any> = null;
 
   constructor(private productService: ProductService,
@@ -28,11 +28,6 @@ export class ProductsComponent implements OnInit {
             map(([productResult, categoryResult]) => {
               return { productResult, categoryResult };
             }));
-      }
-      ));
-  }
-
-  filter() {
-    console.log('filter called');
+      }));
   }
 }
