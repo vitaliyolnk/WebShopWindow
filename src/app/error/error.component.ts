@@ -20,10 +20,10 @@ export class ErrorComponent implements OnInit {
    if (errorCode === 0) {
      this.errorMessage = 'Unreachable resource.';
    } else
-   if (errorCode > 400 && errorCode < 499) {
-     this.errorMessage = 'User error';
+   if (errorCode > 400 && errorCode < 499 || isNaN(errorCode)) {
+     this.errorMessage = 'User error.';
    } else {
-    this.errorMessage = 'Server error';
+    this.errorMessage = 'Server error.';
    }
   }
 }

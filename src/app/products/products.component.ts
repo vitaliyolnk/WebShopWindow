@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
       switchMap((params: ParamMap) => {
         return forkJoin(
           this.productService.getProducts(params),
-          this.categoryService.getCategories())
+          this.categoryService.getCategories(params))
           .pipe(
             map(([productResult, categoryResult]) => {
               return { productResult, categoryResult };

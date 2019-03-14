@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IFilterGroup } from '../models/filter-group';
-import { IResults, ICategories } from '../models/results';
-import { map } from 'rxjs/operators';
+import { ICategories } from '../models/results';
+import { ParamMap } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +14,19 @@ export class CategoriesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCategories(): Observable<ICategories> {
+  getCategories(searchParameters: ParamMap): Observable<ICategories> {
 
   //  const res = this.httpClient.get(this.categoriesApi);
   //  res.pipe(map((response: Response) => console.log(response.json())));
-
-    return this.httpClient.get<ICategories>(this.categoriesApi);
+  let queryParams = new HttpParams();
+  if (searchParameters.keys.length > 0) {
+    searchParameters.keys.forEach(fk => {
+      const val = searchParameters.getAll(fk);
+      if (val) {
+        queryParams = queryParams.append(fk, val.toString());
+      }
+    });
+  }
+    return this.httpClient.get<ICategories>(this.categoriesApi, { params: queryParams });
   }
 }

@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-      <label for="{{filterGroup.group}}" class="read-more-trigger"></label>
+      <label *ngIf="filterGroup.items.length > 6" for="{{filterGroup.group}}" class="read-more-trigger"></label>
     </form>
   </div>
 </div>
