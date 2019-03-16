@@ -8,7 +8,7 @@
       <div class="modal-body">
         <div *ngIf="productView" class="row">
           <div class="col-lg-8">
-            <img [src]='productView.image_url |  productImageUrl : ImageView.detail' alt="product" class="img-fluid">
+            <img [src]='productView.image_url |  productImageUrl : ImageView.detail' alt="{{productView.brand}}{{productView | productTitle}}" class="img-fluid">
           </div>
           <div class="col-lg-4 d-flex align-items-center">
             <div>

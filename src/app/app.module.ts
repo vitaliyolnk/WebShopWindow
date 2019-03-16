@@ -20,13 +20,17 @@ import { ProductImageUrlPipe } from './products/shared/product-image-url.pipe';
 import { ProductRelatedPipe } from './products/shared/product-related.pipe';
 import { HttpErrorInterceptor } from './products/shared/http-error-interceptor';
 import { ErrorComponent } from './error/error.component';
+import { HomeComponent } from './home/home.component';
+import { AboutUsComponent } from './aboutus/aboutus.component';
 
 const appRoutes: Routes = [
+  { path: 'home', component: HomeComponent},
   { path: 'products', component: ProductsComponent },
   {
     path: 'products/:id', component: ProductDetailsComponent,
     resolve: { productDetails: ProductDetailsResolver }
   },
+  { path: 'about', component: AboutUsComponent },
   { path: 'error', component: ErrorComponent },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', component: ErrorComponent, data: { error: 404 } },
@@ -45,7 +49,9 @@ const appRoutes: Routes = [
     ProductFeaturesPipe,
     ProductImageUrlPipe,
     ProductRelatedPipe,
-    ErrorComponent
+    ErrorComponent,
+    HomeComponent,
+    AboutUsComponent
   ],
   imports: [
     RouterModule.forRoot(
