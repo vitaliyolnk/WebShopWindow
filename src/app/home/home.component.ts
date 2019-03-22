@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { AppSettings } from '../products/shared/app-settings';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle(`${AppSettings.WEBSITE_NAME} | Bikes | etc`);
   }
-
 }

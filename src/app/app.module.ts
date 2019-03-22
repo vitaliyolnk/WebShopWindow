@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -62,6 +62,7 @@ const appRoutes: Routes = [
     FormsModule
   ],
   providers: [
+    Title,
     CategoriesService,
     ProductService,
     ProductDetailsResolver,

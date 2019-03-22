@@ -4,6 +4,9 @@ import { Router, NavigationEnd } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+/*
+Used to get previouse page URL
+*/
 export class PreviousRouteService {
 
   private previousUrl: string;

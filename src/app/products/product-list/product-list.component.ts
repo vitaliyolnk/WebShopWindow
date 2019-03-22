@@ -4,6 +4,7 @@ import { IPagingView } from '../models/paging-view';
 import { ImageView } from '../shared/image-view.enum';
 import { PreviousRouteService } from '../shared/previous-route.service';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-list',
@@ -15,12 +16,14 @@ export class ProductListComponent implements OnInit {
   public pageSize: number;
   public priceSortOrder: {};
   public pageSizeOptions = [12, 24, 48];
-  public priceSortOptions = [{name: 'ASC', value: 'asc'}, {name: 'DESC', value: 'desc'}];
+  public priceSortOptions = [{ name: 'ASC', value: 'asc' }, { name: 'DESC', value: 'desc' }];
 
   constructor(
+    // DO NOT REMOVE. used for previouse route URL on details page.
     private previouseRoutService: PreviousRouteService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private titleService: Title
   ) { }
 
   @Input() products: IProductView[];
@@ -31,6 +34,7 @@ export class ProductListComponent implements OnInit {
     this.pageSize = selectedPageSize ? selectedPageSize : this.pageSizeOptions[0];
     const selectedSortOrder = this.route.snapshot.queryParamMap.get('srt');
     this.priceSortOrder = selectedSortOrder ? selectedSortOrder : this.priceSortOptions[0].value;
+    this.titleService.setTitle(`${this.titleService.getTitle()} | Bikes`);
   }
 
   setPageSize(value: number): void {

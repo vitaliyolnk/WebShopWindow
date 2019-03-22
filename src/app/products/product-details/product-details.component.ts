@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../models/product';
 import { ProductSpec } from '../shared/product-spec.enum';
 import { PreviousRouteService } from '../shared/previous-route.service';
+import { Title } from '@angular/platform-browser';
+import { AppSettings } from '../shared/app-settings';
 
 @Component({
   templateUrl: './product-details.component.html',
@@ -18,7 +20,8 @@ export class ProductDetailsComponent implements OnInit {
   public productDetails: IProduct;
 
   constructor(private route: ActivatedRoute,
-    private previousRouteService: PreviousRouteService) {
+    private previousRouteService: PreviousRouteService,
+    private titleService: Title) {
   }
 
   ngOnInit() {
@@ -26,6 +29,7 @@ export class ProductDetailsComponent implements OnInit {
     this.productColour = this.productDetails.colour;
     this.productImage = this.productDetails.image_url;
     this.productListUrl = this.getProductListUrl();
+    this.titleService.setTitle(`${AppSettings.WEBSITE_NAME} | Bikes | ${this.productDetails.brand} ${this.productDetails.model}`);
   }
 
   UpdateImage(colour: string) {

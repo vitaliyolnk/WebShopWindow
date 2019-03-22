@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { AppSettings } from '../products/shared/app-settings';
 
 @Component({
   selector: 'app-aboutus',
@@ -8,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 
 export class AboutUsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle(`${AppSettings.WEBSITE_NAME} | About us`);
   }
 
 }
