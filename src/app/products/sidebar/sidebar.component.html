@@ -1,25 +1,28 @@
 <div>
-<button type="button" class="btn btn-sm btn-outline-light btn-link" [ngClass]="{'disabled':selectedFiltersList.length === 0}" (click)="clearAllFilters()">Clear all</button>
+  <button type="button" class="btn btn-sm btn-outline-light btn-link"
+    [ngClass]="{'disabled':selectedFiltersList.length === 0}" (click)="clearAllFilters()">Clear all</button>
 </div>
 <div *ngFor="let filterGroup of filterList" class="sidebar-block px-3 px-lg-0">
-  <a data-toggle="collapse" href="#{{filterMenu+filterGroup.group}}" aria-expanded="false" aria-controls="filterMenu"
-    class="d-lg-none block-toggler">Filter by {{filterGroup.group}}</a>
+  <a *ngIf="filterGroup.group !== 'brand'" data-toggle="collapse" href="#filterMenu{{filterGroup.group}}"
+    aria-expanded="false" aria-controls="filterMenu"
+    [ngClass]="{'sidebar-heading':filterGroup.items?.length < 2, 'block-toggler':filterGroup.items?.length > 2}">{{filterGroup.group}}</a>
   <!-- Filter menu-->
-  <div id="{{filterMenu+filterGroup.group}}" class="expand-lg collapse">
-    <h6 class="sidebar-heading d-none d-lg-block">{{filterGroup.group}}</h6>
-    <form action="#" class="mt-4 mt-lg-0">
+  <div id="filterMenu{{filterGroup.group}}"
+    [ngClass]="{'collapse':filterGroup.group !== 'brand', 'expand-lg':filterGroup.items.length < 2}">
+    <h6 *ngIf="filterGroup.group === 'brand'" class="sidebar-heading d-none d-lg-block"
+      [ngClass]="{'expand-lg':filterGroup.items.length < 2}">{{filterGroup.group}}</h6>
+    <form action="#" class="mt-4 mt-lg-4">
       <input type="checkbox" class="read-more-state" id="{{filterGroup.group}}" />
       <div class="read-more-wrap">
         <div *ngFor="let filter of filterGroup.items; let idx = index; trackBy: trackById" class="form-group mb-1">
-          <div class="custom-control custom-checkbox" [ngClass] = "{'read-more-target':idx > 5}">
+          <div class="custom-control custom-checkbox">
             <input id="{{filterGroup.group}}_{{filter.id}}" type="checkbox"
               (change)="filterResults(filterGroup.group, filter.id, $event.target.checked)"
-              name="{{filterGroup.group}}_{{filter.id}}" class="custom-control-input" [checked]="filter.isSelected" >
+              name="{{filterGroup.group}}_{{filter.id}}" class="custom-control-input" [checked]="filter.isSelected">
             <label for="{{filterGroup.group}}_{{filter.id}}" class="custom-control-label">{{filter.name}}</label>
           </div>
         </div>
       </div>
-      <label *ngIf="filterGroup.items.length > 6" for="{{filterGroup.group}}" class="read-more-trigger"></label>
     </form>
   </div>
 </div>

@@ -8,7 +8,8 @@
                     class="fa fa-bars"></i></button>
             <div id="navbarCollapse" class="collapse navbar-collapse">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a routerLink="/home" class="nav-link" routerLinkActive="active">Home</a>
+                    <li class="nav-item"><a routerLink="/" class="nav-link" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact: true}">Home</a>
                     </li>
                     <li class="nav-item"><a routerLink="/products" class="nav-link" routerLinkActive="active">Shop</a>
                     </li>
@@ -67,3 +68,4 @@
         </div>
     </div>
 </footer>
+<div id="scrollTop" style="display: block;"><i class="fa fa-long-arrow-alt-up"></i></div>

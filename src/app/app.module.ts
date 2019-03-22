@@ -24,7 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './aboutus/aboutus.component';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent},
+  { path: '', component: HomeComponent},
   { path: 'products', component: ProductsComponent },
   {
     path: 'products/:id', component: ProductDetailsComponent,
@@ -32,7 +32,6 @@ const appRoutes: Routes = [
   },
   { path: 'about', component: AboutUsComponent },
   { path: 'error', component: ErrorComponent },
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', component: ErrorComponent, data: { error: 404 } },
 ];
 
