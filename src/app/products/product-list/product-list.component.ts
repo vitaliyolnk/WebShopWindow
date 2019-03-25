@@ -5,6 +5,7 @@ import { ImageView } from '../shared/image-view.enum';
 import { PreviousRouteService } from '../shared/previous-route.service';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AppSettings } from '../shared/app-settings';
 
 @Component({
   selector: 'app-product-list',
@@ -34,7 +35,7 @@ export class ProductListComponent implements OnInit {
     this.pageSize = selectedPageSize ? selectedPageSize : this.pageSizeOptions[0];
     const selectedSortOrder = this.route.snapshot.queryParamMap.get('srt');
     this.priceSortOrder = selectedSortOrder ? selectedSortOrder : this.priceSortOptions[0].value;
-    this.titleService.setTitle(`${this.titleService.getTitle()} | Bikes`);
+    this.titleService.setTitle(`${AppSettings.WEBSITE_NAME} | Shop`);
   }
 
   setPageSize(value: number): void {
